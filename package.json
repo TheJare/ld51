@@ -1,0 +1,13 @@
+{
+  "name": "ld51",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel --open --dist-dir temp/dist",
+    "build": "parcel build --no-source-maps"
+  },
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "parcel-reporter-static-files-copy": "^1.4.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    // "sourceMap": true,
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["ES2015", "DOM"]
+  }
+}
