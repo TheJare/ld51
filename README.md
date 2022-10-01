@@ -2,7 +2,7 @@
 
 The theme of [Ludum Dare 51 game jam](https://ldjam.com/events/ludum-dare/51) is: **Every 10 seconds**
 
-I squeezed 3 hours over the weekend to end with something decently fun or peculiar. Sorry to say, difficulty escalates savagely very quickly.
+I squeezed 3 hours over the weekend to end with something decently fun or peculiar.
 
 [Ludum Dare entry page](https://ldjam.com/events/ludum-dare/51/$304762)
 
@@ -11,6 +11,8 @@ I squeezed 3 hours over the weekend to end with something decently fun or peculi
 https://twitter.com/TheJare/status/1576140859430445056
 
 > HTML DOM game where you get a new addition exercise every 10 seconds, score for finishing it earlier, and a max of accumulated exercises. Solve them by typing numbers like Z-type and such games.
+
+As with most other LD entries I've produced, it generates most gameplay with some sort of power curve that leads to rising difficulty. Unfortunately, in this one the difficulty escalates savagely very fast.
 
 ## Build
 
