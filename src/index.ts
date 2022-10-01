@@ -59,6 +59,11 @@ export class Game {
   elScore: HTMLElement;
   elState: HTMLElement;
 
+  audioNew: HTMLAudioElement;
+  audioFail: HTMLAudioElement;
+  audioOver: HTMLAudioElement;
+  audioEnabled: boolean = false;
+
   items: Row[] = [];
   accumulated: string = "";
   score: number = 0;
@@ -70,9 +75,18 @@ export class Game {
     this.elBoard = document.getElementById("board");
     this.elScore = document.getElementById("score");
     this.elState = document.getElementById("state");
+    this.audioNew = new Audio("right.wav");
+    this.audioFail = new Audio("fail.wav");
+    this.audioOver = new Audio("over.wav");
     setInterval(() => this.tick(), 1000);
     this.reset();
     this.addItem();
+  }
+
+  playSound(sound: HTMLAudioElement) {
+    if (this.audioEnabled) {
+      sound.play();
+    }
   }
 
   reset() {
@@ -106,9 +120,11 @@ export class Game {
 
   addItem() {
     if (this.items.length >= 5) {
+      this.playSound(this.audioOver);
       this.gameOver = true;
       this.elState.innerHTML = `<span style="color:red">Game Over</span> (difficulty: ${Math.floor(this.difficulty)})`;
     } else {
+      this.playSound(this.audioNew);
       let item = new Row(Math.floor(this.difficulty));
       this.elBoard.appendChild(item.elNode);
       this.items.push(item);
@@ -116,6 +132,7 @@ export class Game {
   }
 
   onKey(key: string) {
+    this.audioEnabled = true;
     if (this.gameOver) {
       this.reset();
       return;
@@ -124,6 +141,7 @@ export class Game {
       let now = Date.now();
       let accepted = false;
       let completed = false;
+      let playSound = false;
       this.accumulated = this.accumulated + key;
       for (let i = this.items.length - 1; i >= 0; i--) {
         let item = this.items[i];
@@ -139,13 +157,19 @@ export class Game {
             completed = true;
           }
           this.items.splice(i, 1);
+          playSound = true;
         }
       }
       if (!accepted) {
         this.accumulated = "";
+        if (!playSound) {
+          this.playSound(this.audioFail);
+        }
       }
       if (completed) {
         this.addItem();
+      } else if (playSound) {
+        this.playSound(this.audioNew);
       }
     }
   }
