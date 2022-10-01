@@ -14,7 +14,7 @@ https://twitter.com/TheJare/status/1576140859430445056
 
 ## Build
 
-Built with [Typescript](https://www.typescriptlang.org/) and [Parcel](https://parceljs.org/)
+Built with [Typescript](https://www.typescriptlang.org/) and [Parcel](https://parceljs.org/). Audio generated with [Chiptone](https://sfbgames.itch.io/chiptone).
 
 - Install `node` + `npm`
 - Run `node install`
