@@ -89,6 +89,9 @@ export class Game {
       button.className = "button";
       button.textContent = i.toString();
       ((i) => button.addEventListener("click", () => this.onKey(i)))(i.toString());
+      if (i == 5) {
+        buttonbar.appendChild(document.createElement("br"));
+      }
       buttonbar.appendChild(button);
     }
 
