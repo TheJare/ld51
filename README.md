@@ -2,9 +2,9 @@
 
 The theme of [Ludum Dare 51 game jam](https://ldjam.com/events/ludum-dare/51) is: **Every 10 seconds**
 
-I squeezed 3 hours over the weekend to end with something decently fun or peculiar.
+I squeezed 5 hours scattered over the weekend, to end with something that I hope is decently fun or peculiar.
 
-[Ludum Dare entry page](https://ldjam.com/events/ludum-dare/51/$304762)
+[Ludum Dare entry page](https://ldjam.com/events/ludum-dare/51/10-seconds-of-math)
 
 ## Design
 
