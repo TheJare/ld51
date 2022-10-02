@@ -17,8 +17,8 @@ class Row {
 
   constructor(difficulty: number) {
     let exp = Math.log10(difficulty);
-    let max = 10 ** (exp + 1);
-    let min = 10 ** exp;
+    let max = 10 ** (exp + 0.2 + Math.random() * 0.8);
+    let min = 10 ** Math.floor(exp);
     this.difficulty = difficulty;
     this.ops[0] = Math.floor(Math.random() * (max - min) + min);
     this.ops[1] = Math.floor(Math.random() * (max - min) + min);
@@ -96,7 +96,7 @@ export class Game {
     }
     this.accumulated = "";
     this.score = 0;
-    this.difficulty = 1;
+    this.difficulty = 7;
     this.gameOver = false;
   }
 
@@ -104,7 +104,7 @@ export class Game {
     if (this.gameOver) {
       return;
     }
-    this.difficulty *= 1.1;
+    this.difficulty *= 1.03;
     this.elState.innerHTML = `(difficulty: ${Math.floor(this.difficulty)})`;
     let now = Date.now();
     let allExpired = true;
