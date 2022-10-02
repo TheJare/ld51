@@ -9,8 +9,11 @@
       body {
         background-color: #001d19;
         color: #e0e0e0;
-        font-size: x-large;
         font-family: Arial, Helvetica, sans-serif;
+        user-select: none;
+      }
+      .gameplay {
+        font-size: x-large;
       }
       footer {
         font-size: small;
@@ -23,6 +26,20 @@
         height: 7.5em;
         padding: 0.2em 0.5em;
       }
+      .row {
+        white-space: nowrap;
+      }
+      #buttonbar {
+        padding: 0.8em 0;
+        overflow-wrap: break-word;
+        line-height: 1.5em;
+      }
+      .button {
+        border: 3px solid #ffffff;
+        border-radius: 10px;
+        padding: 0 0.2em;
+        margin: 0.1em 0.1em;
+      }
       #score {
         color: #ff0;
       }
@@ -34,10 +51,16 @@
   </head>
   <body>
     <h2>LD51 - 10 Seconds of Math</h2>
-    <p>Type the correct results.<br />Solve faster to score.<br />Don't let the box fill up.</p>
-    <div>Score: <span id="score">0</span> <span id="state"></span></div>
-    <div id="board"></div>
-    <p></p>
+    <p>
+      Type the correct results.<br />
+      Solve faster to score.<br />
+      Don't let the box fill up.
+    </p>
+    <div class="gameplay">
+      <div>Score: <span id="score">0</span> <span id="state"></span></div>
+      <div id="board"></div>
+      <div id="buttonbar"></div>
+    </div>
     <footer>
       Copyright (C) 2022 Javier Arevalo. <a href="https://github.com/TheJare/ld51">Source code in github</a>
     </footer>

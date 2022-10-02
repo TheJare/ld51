@@ -24,6 +24,7 @@ class Row {
     this.ops[1] = Math.floor(Math.random() * (max - min) + min);
     this.time = kSeconds;
     this.elNode = document.createElement("div");
+    this.elNode.className = "row";
     this.update("");
   }
 
@@ -62,6 +63,7 @@ export class Game {
   audioNew: HTMLAudioElement;
   audioFail: HTMLAudioElement;
   audioOver: HTMLAudioElement;
+  audioTap: HTMLAudioElement;
   audioEnabled: boolean = false;
 
   items: Row[] = [];
@@ -72,12 +74,24 @@ export class Game {
 
   constructor() {
     document.addEventListener("keypress", (event) => this.onKey(event.key));
+    document.addEventListener("click", (event) => this.globalClick());
     this.elBoard = document.getElementById("board");
     this.elScore = document.getElementById("score");
     this.elState = document.getElementById("state");
     this.audioNew = new Audio("right.wav");
     this.audioFail = new Audio("fail.wav");
     this.audioOver = new Audio("over.wav");
+    this.audioTap = new Audio("tap.wav");
+
+    let buttonbar = document.getElementById("buttonbar");
+    for (let i = 0; i < 10; i++) {
+      let button = document.createElement("span");
+      button.className = "button";
+      button.textContent = i.toString();
+      ((i) => button.addEventListener("click", () => this.onKey(i)))(i.toString());
+      buttonbar.appendChild(button);
+    }
+
     setInterval(() => this.tick(), 1000);
     this.reset();
     this.addItem();
@@ -98,6 +112,7 @@ export class Game {
     this.score = 0;
     this.difficulty = 7;
     this.gameOver = false;
+    this.elScore.innerText = this.score.toString();
   }
 
   tick() {
@@ -122,7 +137,9 @@ export class Game {
     if (this.items.length >= 5) {
       this.playSound(this.audioOver);
       this.gameOver = true;
-      this.elState.innerHTML = `<span style="color:red">Game Over</span> (difficulty: ${Math.floor(this.difficulty)})`;
+      this.elState.innerHTML = `(difficulty: ${Math.floor(
+        this.difficulty
+      )})<br /><span style="color:red">Game Over</span>`;
     } else {
       this.playSound(this.audioNew);
       let item = new Row(Math.floor(this.difficulty));
@@ -131,13 +148,19 @@ export class Game {
     }
   }
 
-  onKey(key: string) {
+  globalClick() {
     this.audioEnabled = true;
     if (this.gameOver) {
+      this.playSound(this.audioTap);
       this.reset();
       return;
     }
-    if (key[0] >= "0" && key[0] <= "9") {
+  }
+
+  onKey(key: string) {
+    this.globalClick();
+    if (!this.gameOver && key[0] >= "0" && key[0] <= "9") {
+      this.playSound(this.audioTap);
       let now = Date.now();
       let accepted = false;
       let completed = false;
